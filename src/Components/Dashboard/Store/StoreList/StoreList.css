@@ -1,0 +1,26 @@
+.grid-parent-cards {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 1.5rem;
+    width: 100%;
+}
+
+.add-store-action-parent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2rem;
+    cursor: pointer;
+}
+
+.add-store-text {
+    color: #133E90;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.dash-content-parent {
+    padding: 1.5rem;
+    width: 100%;
+}

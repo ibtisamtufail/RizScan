@@ -1,0 +1,19 @@
+.forget-fields-parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-parent-forget {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.forget-heading {
+    text-align: center;
+    color: #447BE7;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
