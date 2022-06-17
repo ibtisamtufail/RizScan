@@ -1,0 +1,49 @@
+.drawer-parent {
+    width: 220px;
+    height: calc(100vh - 80px);
+    background-color: #447BE7;
+    color: white;
+    position: relative;
+}
+
+.drawer-ul {
+    list-style: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.icon-imgs {
+    width: 18px;
+    margin: 0px 10px;
+}
+
+.drawer-list {
+    padding: 10px;
+}
+
+.drawer-list:nth-child(7) {
+    position: absolute;
+    bottom: 30px;
+}
+
+.drawer-list:hover {
+    opacity: 0.7;
+}
+
+.user-name {
+    border: 1px solid;
+    display: block;
+    text-align: center;
+    width: 80%;
+    background-color: white;
+    color: #447BE7;
+    font-weight: 600;
+    padding: 3px 0px;
+    margin-bottom: 1rem;
+}
+
+.user-name-parent {
+    display: flex;
+    justify-content: center;
+}

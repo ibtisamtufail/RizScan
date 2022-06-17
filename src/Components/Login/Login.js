@@ -4,10 +4,12 @@ import Button from '@mui/material/Button';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { useNavigate } from 'react-router-dom';
 import "./Login.css";
 
 const Login = () => {
   const [option, setOption] = useState(1);
+  const navigation = useNavigate();
   return <>
     <div className='login-fields-parent'>
       <section>
@@ -43,7 +45,7 @@ const Login = () => {
         </section>
         <section className='action-parent'>
           <Button variant="contained">Login</Button>
-          <span style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }}>Forget Password</span>
+          <span onClick={()=>navigation('/forgetPassword')} style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }}>Forget Password</span>
         </section>
       </section>
     </div>

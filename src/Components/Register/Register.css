@@ -1,0 +1,42 @@
+.basic-heading {
+    color: #447BE7;
+}
+
+.grid-parent, .grid-parent-action {
+    display: flex;
+    justify-content: center;
+}
+
+.grid-parent-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.action-parent-reg {
+    width: 600px;
+}
+
+.action-parent-reg .MuiFormControlLabel-label {
+    color: #447BE7;
+    font-size: 15px;
+}
+
+.action-parent-reg svg{
+    width: .8em;
+}
+
+.reg-btn-parent {
+    width: 200px;
+}
+
+.reg-btn-parent .MuiButton-contained {
+    width: 100%;
+    border-radius: 0px;
+}
+
+.bill-chk{
+    /* text-align: center; */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

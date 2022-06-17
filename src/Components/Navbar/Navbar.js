@@ -11,12 +11,9 @@ const Navbar = () => {
                 <section className='img-parent'>
                     <img src={Logo} onClick={() => navigation('/')} alt="Logo" className='logo' />
                 </section>
-                {/* <section className='nav-text'>
-                    <span style={{ color: 'white', textTransform: 'uppercase',marginBottom:'5px' }}>{title}</span>
-                </section> */}
                 <section className='nav-btn-parent'>
                     <button onClick={() => navigation('/login')} className='nav-btn'>Login</button>
-                    <button className='nav-btn'>Register</button>
+                    <button onClick={() => navigation('/register')} className='nav-btn'>Register</button>
                 </section>
             </div>
         </div>
