@@ -1,5 +1,5 @@
 import React from 'react';
-import Drawer from '../../../Drawer/Drawer';
+import Drawer from '../../../../Layout/Drawer/Drawer';
 import TextField from '@mui/material/TextField';
 import './UpdateProfile.css';
 import Button from '@mui/material/Button';

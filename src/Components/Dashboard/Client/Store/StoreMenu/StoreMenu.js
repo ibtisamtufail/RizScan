@@ -1,5 +1,5 @@
 import React from 'react';
-import Drawer from '../../../Drawer/Drawer';
+import Drawer from '../../../../Layout/Drawer/Drawer';
 import './StoreMenu.css';
 import UserIcon from './imgs/user.png';
 import ReportIcon from './imgs/report.png';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Drawer from '../../../Drawer/Drawer';
+import Drawer from '../../../../Layout/Drawer/Drawer';
 import './Management.css';
 import Card from './Card';
 import AddIcon from '../../Store/imgs/add.png';

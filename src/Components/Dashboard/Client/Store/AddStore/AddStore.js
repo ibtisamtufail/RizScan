@@ -1,18 +1,18 @@
 import React from 'react';
-import UpdateStoreForm from '../../../Auth/Register/Register';
-import Drawer from '../../../Drawer/Drawer';
+import AddStoreForm from '../../../../Auth/Register/Register';
+import Drawer from '../../../../Layout/Drawer/Drawer';
 
-const UpdateStore = () => {
+const AddStore = () => {
     return (
         <div style={{ display: 'flex', width: '100%' }}>
             <section style={{ position: 'relative', minWidth: '220px' }}>
                 <Drawer />
             </section>
             <section className='dash-content-parent'>
-                <UpdateStoreForm component='UpdateStore' />
+                <AddStoreForm component='AddStore' />
             </section>
         </div>
     )
 }
 
-export default UpdateStore;
+export default AddStore;
