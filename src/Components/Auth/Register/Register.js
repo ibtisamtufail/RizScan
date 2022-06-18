@@ -19,7 +19,7 @@ const Register = ({ component = 'Register' }) => {
                 <Box>
                     {
                         component === 'Register' &&
-                        <>
+                        <React.Fragment>
                             <h3 className='basic-heading'>Basic Information</h3>
                             <Grid container spacing={2}>
                                 <Grid item xs={6}>
@@ -45,7 +45,7 @@ const Register = ({ component = 'Register' }) => {
                                     <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Confirm Password" variant="outlined" />
                                 </Grid>
                             </Grid>
-                        </>
+                        </React.Fragment>
                     }
                 </Box>
             </section>
@@ -81,7 +81,7 @@ const Register = ({ component = 'Register' }) => {
                     </div>
                     {
                         billCheck &&
-                        <>
+                        <React.Fragment>
                             <Grid container spacing={2}>
                                 <Grid item xs={6}>
                                     <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Billing Address" variant="outlined" />
@@ -99,7 +99,7 @@ const Register = ({ component = 'Register' }) => {
                                     <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Zip Code" variant="outlined" />
                                 </Grid>
                             </Grid>
-                        </>
+                        </React.Fragment>
                     }
                 </Box>
             </section>

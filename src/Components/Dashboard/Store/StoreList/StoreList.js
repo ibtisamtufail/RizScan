@@ -1,6 +1,6 @@
 import React from 'react';
-import Cards from '../../Cards/Cards';
-import AddIcon from '../../imgs/add.png';
+import Cards from '../Cards/Cards';
+import AddIcon from '../imgs/add.png';
 import Drawer from '../../../Drawer/Drawer';
 import './StoreList.css';
 import { useNavigate } from 'react-router-dom';

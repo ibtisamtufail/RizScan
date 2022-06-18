@@ -1,0 +1,25 @@
+.menu-heading {
+    text-align: center;
+}
+
+.menu-parent {
+    display: flex;
+}
+
+.drawer-parent {
+    position: relative;
+    min-width: 220px;
+}
+
+.menu-text {
+    font-size: x-large;
+    color: #447BE7;
+}
+
+.menu-cards {
+    margin-top: 1rem;
+}
+
+.menu-img {
+    width: 300px;
+}

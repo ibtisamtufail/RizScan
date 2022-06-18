@@ -1,5 +1,5 @@
 import React from 'react';
-import AddStoreForm from '../../../Register/Register';
+import AddStoreForm from '../../../Auth/Register/Register'
 import Drawer from '../../../Drawer/Drawer';
 
 const AddStore = () => {

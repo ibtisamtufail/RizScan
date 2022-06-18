@@ -1,0 +1,14 @@
+.dialogue-heading {
+    text-align: center;
+    display: block;
+    color: #447BE7;
+    font-weight: bold;
+}
+
+.dialogue-content-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+}

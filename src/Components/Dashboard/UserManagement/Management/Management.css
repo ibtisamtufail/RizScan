@@ -1,0 +1,68 @@
+.profile-user-icon {
+    width: 60px;
+}
+
+.profile-card-parent {
+    display: flex;
+    align-items: center;
+}
+
+.profile-user-name-text {
+    color: #447BE7;
+    font-size: larger;
+    margin-left: 2rem;
+}
+
+.card-actiob-text-user {
+    display: block;
+    background: #447BE7;
+    color: white;
+    padding: 6px;
+    width: 90px;
+    text-align: center;
+}
+
+.action-parent-user {
+    display: flex;
+    justify-content: end;
+}
+
+.card-parent-user {
+    border-left: 5px solid #447BE7;
+    border-radius: 5px;
+}
+
+.card-parent-user .css-46bh2p-MuiCardContent-root {
+    padding: 16px 16px 0px 16px;
+}
+
+.bottom-action-parent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom-action-parent-parent {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.bottom-action-img-user {
+    width: 20px;
+}
+
+.bottom-text-user-action {
+    display: block;
+    margin-right: 5px;
+}
+
+.blue {
+    color: #447BE7;
+}
+
+.red {
+    color: red;
+}

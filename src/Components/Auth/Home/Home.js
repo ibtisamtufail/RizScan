@@ -4,7 +4,7 @@ import AppsScreen from './imgs/apps.png';
 import './Home.css';
 
 const Home = () => {
-  return <>
+  return <React.Fragment>
     <div className='home-parent'>
       <section>
         <img className='mobile-logo' src={MobileScreen} alt='MobileScreen' />
@@ -13,7 +13,7 @@ const Home = () => {
         <img className='apps-logo' src={AppsScreen} alt='AppsLogo' />
       </section>
     </div>
-  </>
+  </React.Fragment>
 }
 
 export default Home;
