@@ -66,3 +66,12 @@
 .red {
     color: red;
 }
+
+.add-store-action {
+    margin-top: 0px !important;
+    align-items: flex-end;
+}
+
+.user-manage-parent {
+    padding-top: 5px !important;
+}
