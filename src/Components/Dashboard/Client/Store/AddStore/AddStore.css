@@ -1,14 +1,14 @@
 .drawer-parent-container {
     position: relative;
     min-width: 220px;
-    transform: translateX(0);
+    /* transform: translateX(0); */
     transition: transform .7s;
     z-index: 999;
 }
 
 @media (min-width:0px) and (max-width:1024px) {
     .drawer-parent-container {
-        position: absolute !important;
+        position: fixed !important;
         transform: translateX(-100%);
         z-index: 999;
     }

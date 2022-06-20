@@ -1,5 +1,5 @@
 .drawer-parent {
-    width: 220px;
+    min-width: 220px;
     height: calc(100vh - 80px);
     background-color: #447BE7;
     color: white;
