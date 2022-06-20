@@ -1,0 +1,25 @@
+.update-user-manage-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-field {
+    width: 350px;
+    margin-bottom: 1rem!important;
+}
+
+.text-field:nth-child(6) {
+    margin-bottom: 1.5rem!important;
+}
+
+.page-heading {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.update-btn-user{
+    width: 150px;
+    border-radius: 0px!important;
+}

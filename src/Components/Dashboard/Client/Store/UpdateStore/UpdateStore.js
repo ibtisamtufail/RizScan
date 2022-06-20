@@ -1,6 +1,6 @@
 import React from 'react';
-import UpdateStoreForm from '../../../Register/Register';
-import Drawer from '../../../Drawer/Drawer';
+import UpdateStoreForm from '../../../../Auth/Register/Register';
+import Drawer from '../../../../Layout/Drawer/Drawer';
 
 const UpdateStore = () => {
     return (

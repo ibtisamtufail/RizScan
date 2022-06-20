@@ -1,7 +1,7 @@
 import React from 'react';
-import Cards from '../../Cards/Cards';
-import AddIcon from '../../imgs/add.png';
-import Drawer from '../../../Drawer/Drawer';
+import Cards from '../Cards/Cards';
+import AddIcon from '../imgs/add.png';
+import Drawer from '../../../../Layout/Drawer/Drawer';
 import './StoreList.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,9 +14,9 @@ const StoreList = () => {
             <Drawer />
         </section>
         <section className='dash-content-parent'>
-            <section className='dash-content-parent'>
+            {/* <section className='dash-content-parent'>
                 <span style={{ fontWeight: 'bold' }}>Please Select Store</span>
-            </section>
+            </section> */}
             <section className='grid-parent-cards' style={{ marginTop: '1rem' }}>
                 {
                     array?.map((item, index) => {

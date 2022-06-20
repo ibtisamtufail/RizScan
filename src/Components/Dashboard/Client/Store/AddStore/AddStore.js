@@ -1,6 +1,6 @@
 import React from 'react';
-import AddStoreForm from '../../../Register/Register';
-import Drawer from '../../../Drawer/Drawer';
+import AddStoreForm from '../../../../Auth/Register/Register';
+import Drawer from '../../../../Layout/Drawer/Drawer';
 
 const AddStore = () => {
     return (
