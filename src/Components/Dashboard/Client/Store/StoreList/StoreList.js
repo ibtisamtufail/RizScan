@@ -14,9 +14,9 @@ const StoreList = () => {
             <Drawer />
         </section>
         <section className='dash-content-parent'>
-            <section className='dash-content-parent'>
+            {/* <section className='dash-content-parent'>
                 <span style={{ fontWeight: 'bold' }}>Please Select Store</span>
-            </section>
+            </section> */}
             <section className='grid-parent-cards' style={{ marginTop: '1rem' }}>
                 {
                     array?.map((item, index) => {
