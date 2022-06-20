@@ -13,6 +13,8 @@ import StoreMenu from "./Components/Dashboard/Client/Store/StoreMenu/StoreMenu";
 import UserManagementUpdateProfile from "./Components/Dashboard/Client/UserManagement/UpdateProfile/UpdateProfile";
 import UserManagement from "./Components/Dashboard/Client/UserManagement/Management/Management";
 import ShiftReport from "./Components/Dashboard/Client/Reports/ShiftReport";
+import OnSlotReports from "./Components/Dashboard/Client/Reports/OnSlotReports";
+import BackOfficeReport from "./Components/Dashboard/Client/Reports/BackOfficeReport";
 
 const App = () => {
   return (
@@ -30,6 +32,8 @@ const App = () => {
         <Route path='/updateprofile' element={<UserManagementUpdateProfile />} />
         <Route path='/usermanagement' element={<UserManagement />} />
         <Route path='/shiftreport' element={<ShiftReport />} />
+        <Route path='/onslotreports' element={<OnSlotReports />} />
+        <Route path='/baclofficereports' element={<BackOfficeReport />} />
       </Routes>
     </BrowserRouter>
   )

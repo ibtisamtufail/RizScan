@@ -20,6 +20,7 @@
 
 .drawer-list {
     padding: 10px;
+    position: relative;
 }
 
 .drawer-list:nth-child(7) {
@@ -27,7 +28,7 @@
     bottom: 30px;
 }
 
-.drawer-list:hover {
+.drawer-list:hover, .report-ul li:hover {
     opacity: 0.7;
 }
 
@@ -46,4 +47,22 @@
 .user-name-parent {
     display: flex;
     justify-content: center;
+}
+
+.report-ul {
+    text-decoration: none;
+    list-style: none;
+}
+
+.report-ul li {
+    padding: 8px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.img-icons{
+    position: absolute;
+    width: 10px;
+    right: 15px;
+    top: 50%;
 }

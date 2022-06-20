@@ -1,26 +1,56 @@
-.GRid_parent_table {
-  /* border: 1px solid #447BE7;
-     */
-}
-
-.heading {
-  font-weight: bold;
-  display: block;
-  text-align: center;
-}
-
-.tableRow {
-  text-align: left;
-}
-
-.icons_parent {
+.shift-date-parent, .shift-number-parent {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shift-number-parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .icons {
-  width: 20px;
-  position: relative;
-  bottom: 18;
+  width: 18px;
+  margin-left: 1rem;
+}
+
+.GRid_parent_table {
+  margin-top: 5px !important;
+}
+
+.grid-top-head {
+  font-weight: bolder;
+  color: #447BE7;
+  font-size: large;
+}
+
+.table-parent {
+  display: flex;
+  justify-content: center;
+}
+
+.grid-parent-padding {
+  padding: 0px 30px;
+  color: #447BE7;
+  font-weight: bold;
+  font-size: small;
+}
+
+.table-parent-class .MuiTableCell-paddingNone {
+  padding: 0px 10px;
+}
+
+.total-amount {
+  text-align: right;
+  font-weight: bold;
+  color: #447BE7;
+}
+
+.total-amount1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-weight: bold;
+  color: #447BE7;
 }
