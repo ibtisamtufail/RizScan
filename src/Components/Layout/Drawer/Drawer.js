@@ -26,7 +26,7 @@ const Drawer = () => {
                         <img className='icon-imgs' src={StoreIcon} alt="store" />
                         <span>Store</span>
                     </li>
-                    <li className='drawer-list'>
+                    <li className='drawer-list' onClick={() => navigation('/usermanagement')} >
                         <img className='icon-imgs' src={UsersIcon} alt="users" />
                         <span>Users</span>
                     </li>
