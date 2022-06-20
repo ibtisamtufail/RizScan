@@ -1,0 +1,26 @@
+.GRid_parent_table {
+  /* border: 1px solid #447BE7;
+     */
+}
+
+.heading {
+  font-weight: bold;
+  display: block;
+  text-align: center;
+}
+
+.tableRow {
+  text-align: left;
+}
+
+.icons_parent {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.icons {
+  width: 20px;
+  position: relative;
+  bottom: 18;
+}
