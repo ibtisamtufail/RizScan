@@ -3,16 +3,18 @@
     min-width: 220px;
     transform: translateX(0);
     transition: transform .7s;
+    z-index: 999;
 }
 
 @media (min-width:0px) and (max-width:1024px) {
     .drawer-parent-container {
         position: absolute !important;
-        /* min-width: 0px !important; */
         transform: translateX(-100%);
+        z-index: 999;
     }
     .drawer-parent-container.drawer--open{
         position: relative;
         transform: translateX(0);
+        z-index: 999;
     }
 }
