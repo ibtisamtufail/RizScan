@@ -45,7 +45,10 @@ const Login = () => {
         </section>
         <section className='action-parent'>
           <Button variant="contained">Login</Button>
-          <span onClick={() => navigation('/forgetPassword')} style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }}>Forget Password</span>
+          {
+            option === 1 &&
+            <span onClick={() => navigation('/forgetPassword')} style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }}>Forget Password</span>
+          }
         </section>
       </section>
     </div>

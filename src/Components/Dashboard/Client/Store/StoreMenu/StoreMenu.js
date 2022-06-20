@@ -8,7 +8,7 @@ import SubsIcon from './imgs/subs.png';
 const StoreMenu = () => {
     const array = [UserIcon, ReportIcon, SubsIcon];
     return <div className='menu-parent'>
-        <section className='drawer-parent'>
+        <section className='drawer-parent-container'>
             <Drawer />
         </section>
         <section className='dash-content-parent'>

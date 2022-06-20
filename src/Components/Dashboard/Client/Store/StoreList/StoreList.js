@@ -10,7 +10,7 @@ const StoreList = () => {
     const navigation = useNavigate();
 
     return <div style={{ display: 'flex' }}>
-        <section style={{ position: 'relative', minWidth: '220px' }}>
+        <section className='drawer-parent-container'>
             <Drawer />
         </section>
         <section className='dash-content-parent'>
