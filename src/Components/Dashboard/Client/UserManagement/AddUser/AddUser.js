@@ -56,7 +56,7 @@ export default function CustomizedDialogs({ action, setAction }) {
                 aria-labelledby="customized-dialog-title"
                 open={action.open}
             >
-                <BootstrapDialogTitle id="customized-dialog-title" onClose={() => setAction({ open: false, type: null })}>
+                <BootstrapDialogTitle id="model-bottom-style" onClose={() => setAction({ open: false, type: null })}>
                     <span className='dialogue-heading'>{action.type} User</span>
                 </BootstrapDialogTitle>
                 <DialogContent>
@@ -64,7 +64,7 @@ export default function CustomizedDialogs({ action, setAction }) {
                         <TextField fullWidth size='small' id="outlined-basic" label="Username" variant="outlined" /><br />
                         <TextField fullWidth size='small' id="outlined-basic" label="Password" variant="outlined" /><br />
                         <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">User Type</InputLabel>
+                            <InputLabel id="demo-simple-select-label">Type</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"

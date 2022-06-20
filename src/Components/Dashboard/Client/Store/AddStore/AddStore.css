@@ -1,0 +1,18 @@
+.drawer-parent-container {
+    position: relative;
+    min-width: 220px;
+    transform: translateX(0);
+    transition: transform .7s;
+}
+
+@media (min-width:0px) and (max-width:1024px) {
+    .drawer-parent-container {
+        position: absolute !important;
+        /* min-width: 0px !important; */
+        transform: translateX(-100%);
+    }
+    .drawer-parent-container.drawer--open{
+        position: relative;
+        transform: translateX(0);
+    }
+}

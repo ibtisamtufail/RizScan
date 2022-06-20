@@ -6,11 +6,6 @@
     display: flex;
 }
 
-.drawer-parent {
-    position: relative;
-    min-width: 220px;
-}
-
 .menu-text {
     font-size: x-large;
     color: #447BE7;

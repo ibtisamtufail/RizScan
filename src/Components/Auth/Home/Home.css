@@ -1,14 +1,32 @@
-.home-parent{
+.home-parent {
     width: 100vw;
     padding-left: 20px;
     padding-top: 20px;
 }
 
-.mobile-logo{
+.mobile-logo {
     width: 175px;
 }
 
-.apps-logo{
+.apps-logo {
     width: 175px;
     position: relative;
+}
+
+@media only screen and (max-width: 600px) {
+    .home-parent {
+        width: fit-content
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .home-parent {
+        width: fit-content
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .home-parent {
+        width: fit-content
+    }
 }

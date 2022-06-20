@@ -92,27 +92,27 @@ export default function HorizontalLinearStepper() {
                         <React.Fragment>
                             <br />
                             <Grid container spacing={2}>
-                                <Grid item xs={6}>
-                                    <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="First Name" variant="outlined" />
+                                <Grid item sm={6} xs={12} md={6}>
+                                    <TextField className='text-fields' size='small' id="outlined-basic" label="First Name" variant="outlined" />
                                 </Grid>
-                                <Grid item xs={6}>
-                                    <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Last Name" variant="outlined" />
-                                </Grid>
-                            </Grid><br />
-                            <Grid container spacing={2}>
-                                <Grid item xs={6}>
-                                    <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Email" variant="outlined" />
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Mobile" variant="outlined" />
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <TextField className='text-fields' size='small' id="outlined-basic" label="Last Name" variant="outlined" />
                                 </Grid>
                             </Grid><br />
                             <Grid container spacing={2}>
-                                <Grid item xs={6}>
-                                    <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Password" variant="outlined" />
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <TextField className='text-fields' size='small' id="outlined-basic" label="Email" variant="outlined" />
                                 </Grid>
-                                <Grid item xs={6}>
-                                    <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Confirm Password" variant="outlined" />
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <TextField className='text-fields' size='small' id="outlined-basic" label="Mobile" variant="outlined" />
+                                </Grid>
+                            </Grid><br />
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <TextField className='text-fields' size='small' id="outlined-basic" label="Password" variant="outlined" />
+                                </Grid>
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <TextField className='text-fields' size='small' id="outlined-basic" label="Confirm Password" variant="outlined" />
                                 </Grid>
                             </Grid>
                         </React.Fragment>
@@ -122,27 +122,27 @@ export default function HorizontalLinearStepper() {
                             <br />
                             <React.Fragment>
                                 <Grid container spacing={2}>
-                                    <Grid item xs={6}>
-                                        <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Business Name" variant="outlined" />
+                                    <Grid item xs={12} sm={6} md={6}>
+                                        <TextField className='text-fields' size='small' id="outlined-basic" label="Business Name" variant="outlined" />
                                     </Grid>
-                                    <Grid item xs={6}>
-                                        <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Business Address" variant="outlined" />
-                                    </Grid>
-                                </Grid><br />
-                                <Grid container spacing={2}>
-                                    <Grid item xs={6}>
-                                        <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="City" variant="outlined" />
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="State" variant="outlined" />
+                                    <Grid item xs={12} sm={6} md={6}>
+                                        <TextField className='text-fields' size='small' id="outlined-basic" label="Business Address" variant="outlined" />
                                     </Grid>
                                 </Grid><br />
                                 <Grid container spacing={2}>
-                                    <Grid item xs={6}>
-                                        <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Zip Code" variant="outlined" />
+                                    <Grid item xs={12} sm={6} md={6}>
+                                        <TextField className='text-fields' size='small' id="outlined-basic" label="City" variant="outlined" />
                                     </Grid>
-                                    <Grid item xs={6}>
-                                        <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Mobile" variant="outlined" />
+                                    <Grid item xs={12} sm={6} md={6}>
+                                        <TextField className='text-fields' size='small' id="outlined-basic" label="State" variant="outlined" />
+                                    </Grid>
+                                </Grid><br />
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12} sm={6} md={6}>
+                                        <TextField className='text-fields' size='small' id="outlined-basic" label="Zip Code" variant="outlined" />
+                                    </Grid>
+                                    <Grid item xs={12} sm={6} md={6}>
+                                        <TextField className='text-fields' size='small' id="outlined-basic" label="Mobile" variant="outlined" />
                                     </Grid>
                                 </Grid>
                             </React.Fragment>
@@ -154,20 +154,20 @@ export default function HorizontalLinearStepper() {
                                 billCheck &&
                                 <React.Fragment>
                                     <Grid container spacing={2}>
-                                        <Grid item xs={6}>
-                                            <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Billing Address" variant="outlined" />
+                                        <Grid item xs={12} sm={6} md={6}>
+                                            <TextField className='text-fields' size='small' id="outlined-basic" label="Billing Address" variant="outlined" />
                                         </Grid>
-                                        <Grid item xs={6}>
-                                            <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="City" variant="outlined" />
+                                        <Grid item xs={12} sm={6} md={6}>
+                                            <TextField className='text-fields' size='small' id="outlined-basic" label="City" variant="outlined" />
                                         </Grid>
                                     </Grid>
                                     <br />
                                     <Grid container spacing={2}>
-                                        <Grid item xs={6}>
-                                            <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="State" variant="outlined" />
+                                        <Grid item xs={12} sm={6} md={6}>
+                                            <TextField className='text-fields' size='small' id="outlined-basic" label="State" variant="outlined" />
                                         </Grid>
-                                        <Grid item xs={6}>
-                                            <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Zip Code" variant="outlined" />
+                                        <Grid item xs={12} sm={6} md={6}>
+                                            <TextField className='text-fields' size='small' id="outlined-basic" label="Zip Code" variant="outlined" />
                                         </Grid>
                                     </Grid>
                                 </React.Fragment>
@@ -179,19 +179,19 @@ export default function HorizontalLinearStepper() {
                         <React.Fragment>
                             <br />
                             <Grid container spacing={2}>
-                                <Grid item xs={6}>
-                                    <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Name on Card" variant="outlined" />
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <TextField className='text-fields' size='small' id="outlined-basic" label="Name on Card" variant="outlined" />
                                 </Grid>
-                                <Grid item xs={6}>
-                                    <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Card Number" variant="outlined" />
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <TextField className='text-fields' size='small' id="outlined-basic" label="Card Number" variant="outlined" />
                                 </Grid>
                             </Grid><br />
                             <Grid container spacing={2}>
-                                <Grid item xs={6}>
-                                    <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Expiry" variant="outlined" />
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <TextField className='text-fields' size='small' id="outlined-basic" label="Expiry" variant="outlined" />
                                 </Grid>
-                                <Grid item xs={6}>
-                                    <TextField style={{ width: '300px' }} size='small' id="outlined-basic" label="Cvv" variant="outlined" />
+                                <Grid item xs={12} sm={6} md={6}>
+                                    <TextField className='text-fields' size='small' id="outlined-basic" label="Cvv" variant="outlined" />
                                 </Grid>
                             </Grid><br />
                         </React.Fragment>

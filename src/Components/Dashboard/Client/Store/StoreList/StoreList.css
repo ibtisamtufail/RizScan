@@ -24,3 +24,15 @@
     padding: 1.5rem;
     width: 100%;
 }
+
+@media (min-width:0px) and (max-width:767px) {
+    .grid-parent-cards {
+        grid-template-columns: auto;
+    }
+}
+
+@media (min-width:768px) and (max-width:1024px) {
+    .grid-parent-cards {
+        grid-template-columns: auto auto;
+    }
+}

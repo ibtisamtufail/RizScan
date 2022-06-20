@@ -9,7 +9,7 @@ const Management = () => {
     const [action, setAction] = useState({ open: false, type: null });
 
     return <div className='menu-parent'>
-        <section className='drawer-parent'>
+        <section className='drawer-parent-container'>
             <Drawer />
         </section>
         <section className='dash-content-parent user-manage-parent'>

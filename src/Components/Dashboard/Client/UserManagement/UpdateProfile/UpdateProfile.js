@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 
 const UpdateProfile = () => {
     return <div className='menu-parent'>
-        <section className='drawer-parent'>
+        <section className='drawer-parent-container'>
             <Drawer />
         </section>
         <section className='dash-content-parent'>
