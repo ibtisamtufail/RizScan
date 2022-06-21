@@ -7,20 +7,26 @@ import Download from "./images/download.png";
 import Table from './Table';
 
 
-const BackOfficeReport = () => {
+const ReturnsReport = () => {
     return <div style={{ display: "flex", width: "100%" }}>
         <section className="drawer-parent-container">
             <Drawer />
         </section>
         <section className="dash-content-parent">
             <Grid container spacing={2} className="GRid_parent_table">
-                <Grid xs={6}>
-                    <section className="shift-date-parent grid-parent-padding">
-                        {/* <span className="grid-top-head">SHIFT DATE</span>
-                    <input type='date' /> */}
+                <Grid xs={4}>
+                    <section className="shift-date-parent grid-parent-padding flex-end">
+                        <span className="grid-top-head">From</span>
+                        <input type='date' />
                     </section>
                 </Grid>
-                <Grid xs={6}>
+                <Grid xs={4}>
+                    <section className="shift-date-parent grid-parent-padding flex-end">
+                        <span className="grid-top-head">To</span>
+                        <input type='date' />
+                    </section>
+                </Grid>
+                <Grid xs={4}>
                     <section className="shift-number-parent grid-parent-padding ">
                         <span className="grid-top-head"></span>
                         <section>
@@ -34,11 +40,11 @@ const BackOfficeReport = () => {
             <section className="total-amount1">
                 <table>
                     <tr>
-                        <td style={{ padding: '0px 1.5rem', textDecoration: 'underline' }}>Total Quantity</td>
+                        <td style={{ padding: '0px 1.5rem', textDecoration: 'underline' }}>Total Return Quantity</td>
                         <td style={{ padding: '0px 1.5rem' }}>315</td>
                     </tr>
                     <tr style={{ marginTop: '10px', position: 'relative', top: 10 }}>
-                        <td style={{ padding: '0px 1.5rem', textDecoration: 'underline' }}>Total Amount</td>
+                        <td style={{ padding: '0px 1.5rem', textDecoration: 'underline' }}>Total Return Amount</td>
                         <td style={{ padding: '0px 1.5rem' }}>15000</td>
                     </tr>
                 </table>
@@ -50,4 +56,4 @@ const BackOfficeReport = () => {
         </section>
     </div>
 }
-export default BackOfficeReport
+export default ReturnsReport;

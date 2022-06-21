@@ -22,7 +22,15 @@ const ShiftReport = () => {
           </Grid>
           <Grid xs={6}>
             <section className="shift-number-parent grid-parent-padding ">
-              <span className="grid-top-head">SHIFT NUMBER</span>
+              <section>
+                <span className="grid-top-head">SHIFT NUMBER</span>
+                <select name="cars" id="cars">
+                  <option value="volvo">001</option>
+                  <option value="saab">002</option>
+                  <option value="opel">003</option>
+                  <option value="audi">004</option>
+                </select>
+              </section>
               <section>
                 <img className="icons" src={Print} />
                 <img className="icons" src={Download} />

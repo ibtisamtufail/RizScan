@@ -43,9 +43,9 @@ const Drawer = () => {
                         <ul className='report-ul'>
                             <li onClick={() => navigation('/shiftreport')} style={{ fontSize: 'small' }}><img className='icon-imgs' src={ReportDropListIcon} alt="users" />Shift Report</li>
                             <li onClick={() => navigation('/onslotreports')} style={{ fontSize: 'small' }}><img className='icon-imgs' src={ReportDropListIcon} alt="users" />OnSlot Report</li>
-                            <li onClick={() => navigation('/baclofficereports')} style={{ fontSize: 'small' }}><img className='icon-imgs' src={ReportDropListIcon} alt="users" />BackOffice Report</li>
-                            <li style={{ fontSize: 'small' }}><img className='icon-imgs' src={ReportDropListIcon} alt="users" />Returns Report</li>
-                            <li style={{ fontSize: 'small' }}><img className='icon-imgs' src={ReportDropListIcon} alt="users" />Sales Report</li>
+                            <li onClick={() => navigation('/backofficereports')} style={{ fontSize: 'small' }}><img className='icon-imgs' src={ReportDropListIcon} alt="users" />BackOffice Report</li>
+                            <li onClick={() => navigation('/returnsreport')} style={{ fontSize: 'small' }}><img className='icon-imgs' src={ReportDropListIcon} alt="users" />Returns Report</li>
+                            <li onClick={() => navigation('/salesreport')} style={{ fontSize: 'small' }}><img className='icon-imgs' src={ReportDropListIcon} alt="users" />Sales Report</li>
                         </ul>
                     }
                     <li className='drawer-list'>

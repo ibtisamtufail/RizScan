@@ -54,95 +54,145 @@ function stableSort(array, comparator) {
     });
     return stabilizedThis.map((el) => el[0]);
 }
-
-const headCells = [
-    {
-        id: 'slot',
-        numeric: false,
-        disablePadding: true,
-        label: 'Slot#',
-    },
-    {
-        id: 'gamename',
-        numeric: true,
-        disablePadding: false,
-        label: 'Game Name',
-    },
-    {
-        id: 'game',
-        numeric: true,
-        disablePadding: false,
-        label: 'Game#',
-    },
-    {
-        id: 'pack',
-        numeric: true,
-        disablePadding: false,
-        label: 'Pack#',
-    },
-    {
-        id: 'price',
-        numeric: true,
-        disablePadding: false,
-        label: 'Price',
-    },
-    {
-        id: 'open',
-        numeric: true,
-        disablePadding: false,
-        label: 'Open',
-    },
-    {
-        id: 'close',
-        numeric: true,
-        disablePadding: false,
-        label: 'Close',
-    },
-    {
-        id: 'ticket',
-        numeric: true,
-        disablePadding: false,
-        label: 'Tickets Sold',
-    },
-    {
-        id: 'amount',
-        numeric: true,
-        disablePadding: false,
-        label: 'Amount Sold',
-    },
-];
-
 function EnhancedTableHead(props) {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
+    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort, component } =
         props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
     };
 
+    let headCells = [];
+    if (component === 'sales') {
+        headCells = [
+            {
+                id: 'slot',
+                numeric: false,
+                disablePadding: true,
+                label: 'Date',
+            },
+            {
+                id: 'gamename',
+                numeric: true,
+                disablePadding: false,
+                label: 'Scratcher Sales',
+            },
+            {
+                id: 'game',
+                numeric: true,
+                disablePadding: false,
+                label: 'Lotto Sales',
+            },
+            {
+                id: 'pack',
+                numeric: true,
+                disablePadding: false,
+                label: 'Scratcher Payout',
+            },
+            {
+                id: 'price',
+                numeric: true,
+                disablePadding: false,
+                label: 'Lotto Payout',
+            },
+            {
+                id: 'open',
+                numeric: true,
+                disablePadding: false,
+                label: 'Total Sales',
+            },
+            {
+                id: 'close',
+                numeric: true,
+                disablePadding: false,
+                label: 'Total Payout',
+            },
+        ];
+    }
+    else {
+        headCells = [
+            {
+                id: 'slot',
+                numeric: false,
+                disablePadding: true,
+                label: 'Slot#',
+            },
+            {
+                id: 'gamename',
+                numeric: true,
+                disablePadding: false,
+                label: 'Game Name',
+            },
+            {
+                id: 'game',
+                numeric: true,
+                disablePadding: false,
+                label: 'Game#',
+            },
+            {
+                id: 'pack',
+                numeric: true,
+                disablePadding: false,
+                label: 'Pack#',
+            },
+            {
+                id: 'price',
+                numeric: true,
+                disablePadding: false,
+                label: 'Price',
+            },
+            {
+                id: 'open',
+                numeric: true,
+                disablePadding: false,
+                label: 'Open',
+            },
+            {
+                id: 'close',
+                numeric: true,
+                disablePadding: false,
+                label: 'Close',
+            },
+            {
+                id: 'ticket',
+                numeric: true,
+                disablePadding: false,
+                label: 'Tickets Sold',
+            },
+            {
+                id: 'amount',
+                numeric: true,
+                disablePadding: false,
+                label: 'Amount Sold',
+            },
+        ];
+    }
+
     return (
         <TableHead>
             <TableRow>
-                {headCells.map((headCell) => (
-                    <TableCell
-                        key={headCell.id}
-                        align={headCell.numeric ? 'center' : 'center'}
-                        padding={headCell.disablePadding ? 'none' : 'normal'}
-                        sortDirection={orderBy === headCell.id ? order : false}
-                    >
-                        <TableSortLabel
-                            active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : 'asc'}
-                            onClick={createSortHandler(headCell.id)}
+                {headCells.map((headCell) => {
+                    if (component !== 'backOfficeReports' || headCell.id !== 'slot') {
+                        return <TableCell
+                            key={headCell.id}
+                            align={headCell.numeric ? 'center' : 'center'}
+                            padding={headCell.disablePadding ? 'none' : 'normal'}
+                            sortDirection={orderBy === headCell.id ? order : false}
                         >
-                            {headCell.label}
-                            {orderBy === headCell.id ? (
-                                <Box component="span" sx={visuallyHidden}>
-                                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                                </Box>
-                            ) : null}
-                        </TableSortLabel>
-                    </TableCell>
-                ))}
+                            <TableSortLabel
+                                active={orderBy === headCell.id}
+                                direction={orderBy === headCell.id ? order : 'asc'}
+                                onClick={createSortHandler(headCell.id)}
+                            >
+                                {headCell.label}
+                                {orderBy === headCell.id ? (
+                                    <Box component="span" sx={visuallyHidden}>
+                                        {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                                    </Box>
+                                ) : null}
+                            </TableSortLabel>
+                        </TableCell>
+                    }
+                })}
             </TableRow>
         </TableHead>
     );
@@ -157,17 +207,17 @@ EnhancedTableHead.propTypes = {
     rowCount: PropTypes.number.isRequired,
 };
 
-export default function EnhancedTable() {
+export default function EnhancedTable({ component }) {
     const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('calories');
+    const [orderBy, setOrderBy] = React.useState('');
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(true);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
     const handleRequestSort = (event, property) => {
-        console.log(property);
         const isAsc = orderBy === property && order === 'asc';
+        console.log(property)
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
@@ -236,10 +286,9 @@ export default function EnhancedTable() {
                             onSelectAllClick={handleSelectAllClick}
                             onRequestSort={handleRequestSort}
                             rowCount={rows.length}
+                            component={component}
                         />
                         <TableBody>
-                            {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                 rows.slice().sort(getComparator(order, orderBy)) */}
                             {stableSort(rows, getComparator(order, orderBy))
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => {
@@ -256,22 +305,39 @@ export default function EnhancedTable() {
                                             key={row.name}
                                             selected={isItemSelected}
                                         >
-                                            <TableCell
-                                                component="th"
-                                                id={labelId}
-                                                scope="row"
-                                                padding="none"
-                                            >
-                                                {row.slot}
-                                            </TableCell>
-                                            <TableCell align="center">{row.gamename}</TableCell>
-                                            <TableCell align="center">{row.game}</TableCell>
-                                            <TableCell align="center">{row.pack}</TableCell>
-                                            <TableCell align="center">{row.price}</TableCell>
-                                            <TableCell align="center">{row.open}</TableCell>
-                                            <TableCell align="center">{row.close}</TableCell>
-                                            <TableCell align="center">{row.ticket}</TableCell>
-                                            <TableCell align="center">{row.amount}</TableCell>
+                                            {
+                                                (component !== 'backOfficeReports') &&
+                                                <TableCell
+                                                    component="th"
+                                                    id={labelId}
+                                                    scope="row"
+                                                    padding="none"
+                                                >
+                                                    {row.slot}
+                                                </TableCell>
+                                            }
+                                            {
+                                                component === 'sales' ?
+                                                    <>
+                                                        <TableCell align="center">{row.gamename}</TableCell>
+                                                        <TableCell align="center">{row.game}</TableCell>
+                                                        <TableCell align="center">{row.pack}</TableCell>
+                                                        <TableCell align="center">{row.price}</TableCell>
+                                                        <TableCell align="center">{row.open}</TableCell>
+                                                        <TableCell align="center">{row.close}</TableCell>
+                                                    </>
+                                                    :
+                                                    <>
+                                                        <TableCell align="center">{row.gamename}</TableCell>
+                                                        <TableCell align="center">{row.game}</TableCell>
+                                                        <TableCell align="center">{row.pack}</TableCell>
+                                                        <TableCell align="center">{row.price}</TableCell>
+                                                        <TableCell align="center">{row.open}</TableCell>
+                                                        <TableCell align="center">{row.close}</TableCell>
+                                                        <TableCell align="center">{row.ticket}</TableCell>
+                                                        <TableCell align="center">{row.amount}</TableCell>
+                                                    </>
+                                            }
                                         </TableRow>
                                     );
                                 })}
@@ -297,6 +363,6 @@ export default function EnhancedTable() {
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </Paper>
-        </Box>
+        </Box >
     );
 }

@@ -15,6 +15,8 @@ import UserManagement from "./Components/Dashboard/Client/UserManagement/Managem
 import ShiftReport from "./Components/Dashboard/Client/Reports/ShiftReport";
 import OnSlotReports from "./Components/Dashboard/Client/Reports/OnSlotReports";
 import BackOfficeReport from "./Components/Dashboard/Client/Reports/BackOfficeReport";
+import ReturnsReport from "./Components/Dashboard/Client/Reports/ReturnsReport";
+import SalesPayoutReport from "./Components/Dashboard/Client/Reports/SalesPayoutReport";
 
 const App = () => {
   return (
@@ -33,7 +35,9 @@ const App = () => {
         <Route path='/usermanagement' element={<UserManagement />} />
         <Route path='/shiftreport' element={<ShiftReport />} />
         <Route path='/onslotreports' element={<OnSlotReports />} />
-        <Route path='/baclofficereports' element={<BackOfficeReport />} />
+        <Route path='/backofficereports' element={<BackOfficeReport />} />
+        <Route path='/returnsreport' element={<ReturnsReport />} />
+        <Route path='/salesreport' element={<SalesPayoutReport />} />
       </Routes>
     </BrowserRouter>
   )
