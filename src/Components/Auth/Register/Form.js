@@ -76,11 +76,10 @@ export default function HorizontalLinearStepper() {
             if (data) {
                 setLoader(false);
                 dispatch(setAuthData(data));
-                showAlert('success', 'Registration Successfull');
+                showAlert('success', 'Registration Successful');
             }
         } catch (error) {
             setLoader(false);
-            console.log(error);
             if (error?.response?.data?.message) {
                 showAlert('error', error?.response?.data?.message);
             }

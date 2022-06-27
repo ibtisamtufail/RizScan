@@ -6,14 +6,18 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useNavigate } from 'react-router-dom';
 import WithAuth from '../../HOC/Hoc';
-import "./Login.css";
 import { LoginAPiURL } from '../../Apis/Apis';
 import axios from 'axios';
 import { showAlert } from '../../AlertMessage/AlertFunction';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useDispatch } from 'react-redux';
+import { setAuthData } from '../../Redux/AuthSlice';
+import "./Login.css";
 
 const Login = () => {
   const navigation = useNavigate();
+  const dispatch = useDispatch();
+
   const [option, setOption] = useState(1);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,9 +28,11 @@ const Login = () => {
     try {
       setLoader(true);
       const { data } = await axios.post(LoginAPiURL, obj);
-      if (data?.response) {
-        setLoader(false);
-        showAlert('error', data?.response);
+      if (data) setLoader(false);
+      if (data?.response) showAlert('error', data?.response);
+      else {
+        showAlert('success', 'Login Successful');
+        dispatch(setAuthData(data))
       }
     } catch (error) {
       setLoader(false);
@@ -62,8 +68,8 @@ const Login = () => {
           {
             option === 1 &&
             <React.Fragment>
-              <TextField style={{ width: '350px' }} size='small' id="outlined-basic" label="Email" variant="outlined" /><br /><br />
-              <TextField style={{ width: '350px' }} size='small' id="outlined-basic" label="Password" variant="outlined" />
+              <TextField onChange={(e) => setEmail(e.target.value)} style={{ width: '350px' }} size='small' id="outlined-basic" label="Email" variant="outlined" /><br /><br />
+              <TextField onChange={(e) => setPassword(e.target.value)} style={{ width: '350px' }} size='small' id="outlined-basic" label="Password" variant="outlined" />
             </React.Fragment>
           }
         </section>
