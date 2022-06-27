@@ -80,7 +80,13 @@ export default function HorizontalLinearStepper() {
             }
         } catch (error) {
             setLoader(false);
-            showAlert('error', 'Something went wrong');
+            console.log(error);
+            if (error?.response?.data?.message) {
+                showAlert('error', error?.response?.data?.message);
+            }
+            else {
+                showAlert('error', 'Something went wrong');
+            }
         }
     }
 

@@ -5,11 +5,35 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useNavigate } from 'react-router-dom';
+import WithAuth from '../../HOC/Hoc';
 import "./Login.css";
+import { LoginAPiURL } from '../../Apis/Apis';
+import axios from 'axios';
+import { showAlert } from '../../AlertMessage/AlertFunction';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Login = () => {
-  const [option, setOption] = useState(1);
   const navigation = useNavigate();
+  const [option, setOption] = useState(1);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loader, setLoader] = useState(false);
+
+  const loginUser = async () => {
+    let obj = { email_address: email, password };
+    try {
+      setLoader(true);
+      const { data } = await axios.post(LoginAPiURL, obj);
+      if (data?.response) {
+        setLoader(false);
+        showAlert('error', data?.response);
+      }
+    } catch (error) {
+      setLoader(false);
+      showAlert('error', 'Something went wrong');
+    }
+  }
+
   return <React.Fragment>
     <div className='login-fields-parent'>
       <section>
@@ -44,7 +68,13 @@ const Login = () => {
           }
         </section>
         <section className='action-parent'>
-          <Button variant="contained">Login</Button>
+          <Button onClick={loginUser} variant="contained">
+            {
+              loader ? <CircularProgress size="1.5rem" style={{ color: 'white' }} />
+                :
+                'Login'
+            }
+          </Button>
           {
             option === 1 &&
             <span onClick={() => navigation('/forgetPassword')} style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }}>Forget Password</span>
@@ -55,4 +85,4 @@ const Login = () => {
   </React.Fragment>
 }
 
-export default Login;
+export default WithAuth(Login, 'RDTUM');

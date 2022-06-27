@@ -4,6 +4,7 @@ import './Management.css';
 import AddIcon from '../../Store/imgs/add.png';
 import AddUser from '../AddUser/AddUser';
 import Users from './Users';
+import WithAuth from '../../../../HOC/Hoc';
 
 const Management = () => {
     const [action, setAction] = useState({ open: false, type: null });
@@ -28,4 +29,4 @@ const Management = () => {
     </div>
 }
 
-export default Management;
+export default WithAuth(Management,'RDTLN');

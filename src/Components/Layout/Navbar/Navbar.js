@@ -3,7 +3,12 @@ import './Navbar.css';
 import Logo from './imgs/logo.png';
 import { useNavigate } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
+import { useSelector, useDispatch } from 'react-redux';
+import { setAuthLogout } from '../../Redux/AuthSlice';
+
 const Navbar = () => {
+    const AUTH = useSelector(state => state.Auth);
+    const dispatch = useDispatch();
 
     const ToggleDrawer = () => {
         let elem = document.getElementsByClassName('drawer-parent-container')[0];
@@ -25,8 +30,15 @@ const Navbar = () => {
                     <img src={Logo} onClick={() => navigation('/')} alt="Logo" className='logo' />
                 </section>
                 <section className='nav-btn-parent'>
-                    <button onClick={() => navigation('/login')} className='nav-btn'>Login</button>
-                    <button onClick={() => navigation('/register')} className='nav-btn'>Register</button>
+                    {
+                        AUTH?.token === null ?
+                            <>
+                                <button onClick={() => navigation('/login')} className='nav-btn'>Login</button>
+                                <button onClick={() => navigation('/register')} className='nav-btn'>Register</button>
+                            </>
+                            :
+                            <button onClick={() => dispatch(setAuthLogout())} className='nav-btn'>Logout</button>
+                    }
                 </section>
             </div>
         </div>

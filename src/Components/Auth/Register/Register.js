@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import './Register.css';
+import React from 'react';
 import Form from './Form';
+import WithAuth from '../../HOC/Hoc';
+import './Register.css';
 
 const Register = ({ component = 'Register' }) => {
 
@@ -18,4 +19,4 @@ const Register = ({ component = 'Register' }) => {
     )
 }
 
-export default Register;
+export default WithAuth(Register,'RDTUM');
