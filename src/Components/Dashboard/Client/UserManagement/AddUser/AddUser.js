@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -13,6 +13,13 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import axios from 'axios';
+import { AddUserAPiURL } from '../../../../Apis/Apis';
+import { getAddedOnDate } from '../../../../CommonFunc/CommonFunc';
+import CircularProgress from '@mui/material/CircularProgress';
+import { useSelector, useDispatch } from 'react-redux';
+import { showAlert } from '../../../../AlertMessage/AlertFunction';
+import { setAddNewUser } from '../../../../Redux/UsersSlice';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -48,6 +55,35 @@ const BootstrapDialogTitle = (props) => {
 };
 
 export default function CustomizedDialogs({ action, setAction }) {
+    const customer_id = useSelector(state => state.Auth.customer_id);
+    const dispatch = useDispatch();
+
+    const [loading, setLoading] = useState(false);
+    const [user_name, setUser_name] = useState('');
+    const [password, setPassword] = useState('');
+    const [user_type, setUser_type] = useState('');
+
+    const addUserFunc = async () => {
+        setLoading(true);
+        let today = getAddedOnDate();
+        let obj = { user_name, password, user_type, added_on: today, store_id: customer_id };
+        try {
+            const { data } = await axios.post(AddUserAPiURL, obj);
+            if (data?.store_id) {
+                setLoading(false);
+                dispatch(setAddNewUser(data?.users));
+                showAlert('success', 'User added successfully')
+            }
+        } catch (error) {
+            setLoading(false);
+            if (error?.response?.data?.message) {
+                showAlert('error', error?.response?.data?.message);
+            }
+            else {
+                showAlert('error', 'Something went wrong');
+            }
+        }
+    }
 
     return (
         <div>
@@ -61,32 +97,46 @@ export default function CustomizedDialogs({ action, setAction }) {
                 </BootstrapDialogTitle>
                 <DialogContent>
                     <section className='dialogue-content-section'>
-                        <TextField fullWidth size='small' id="outlined-basic" label="Username" variant="outlined" /><br />
-                        <TextField fullWidth size='small' id="outlined-basic" label="Password" variant="outlined" /><br />
+                        <br />
+                        <TextField onChange={(e) => setUser_name(e.target.value)} fullWidth size='small' label="Username" variant="outlined" /><br />
+                        <TextField onChange={(e) => setPassword(e.target.value)} fullWidth size='small' label="Password" type='password' variant="outlined" /><br />
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Type</InputLabel>
                             <Select
+                                defaultValue=""
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                // value={age}
                                 label="Age"
-                            // onChange={handleChange}
+                                onChange={(e) => setUser_type(e.target.value)}
                             >
-                                <MenuItem value={10}>Manager</MenuItem>
-                                <MenuItem value={20}>Owner</MenuItem>
+                                <MenuItem value='Manager'>Manager</MenuItem>
+                                <MenuItem value='Cashier'>Cashier</MenuItem>
                             </Select>
                         </FormControl>
                     </section>
                 </DialogContent>
+
                 <DialogActions>
                     {
                         action.type === 'Add' ?
-                            <Button variant='contained' onClose={() => setAction({ open: false, type: null })}>
-                                Submit
+                            <Button disabled={loading} style={{ minWidth: '100px' }} onClick={addUserFunc} variant='contained' onClose={() => setAction({ open: false, type: null })}>
+                                {
+                                    loading
+                                        ?
+                                        <CircularProgress size="1.5rem" />
+                                        :
+                                        'Submit'
+                                }
                             </Button>
                             :
-                            <Button variant='contained' onClose={() => setAction({ open: false, type: null })}>
-                                Update
+                            <Button style={{ minWidth: '100px' }} variant='contained' onClose={() => setAction({ open: false, type: null })}>
+                                {
+                                    loading
+                                        ?
+                                        <CircularProgress size="1.5rem" />
+                                        :
+                                        'Update'
+                                }
                             </Button>
                     }
                 </DialogActions>

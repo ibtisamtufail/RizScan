@@ -4,10 +4,12 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import AlertSlice from './AlertSlice';
 import AuthSlice from './AuthSlice';
+import UsersSlice from './UsersSlice';
 
 const reducers = combineReducers({
     Alert: AlertSlice,
-    Auth: AuthSlice
+    Auth: AuthSlice,
+    userList: UsersSlice
 });
 
 const persistConfig = {

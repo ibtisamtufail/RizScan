@@ -15,6 +15,7 @@ import { useDispatch } from 'react-redux';
 import { showAlert } from '../../AlertMessage/AlertFunction';
 import { setAuthData } from '../../Redux/AuthSlice';
 import CircularProgress from '@mui/material/CircularProgress';
+import { getAddedOnDate } from '../../CommonFunc/CommonFunc';
 
 const steps = ['Basic Information', 'Store Information', 'Payment Information'];
 
@@ -53,14 +54,7 @@ export default function HorizontalLinearStepper() {
     const [added_on, setAdded_on] = useState('');
 
     const registerCustomerFunc = async () => {
-        let today = new Date();
-        const dd = String(today.getDate());
-        const mm = String(today.getMonth() + 1)
-        const yyyy = today.getFullYear();
-        const hours = today.getHours();
-        const minutes = today.getMinutes();
-        const seconds = today.getSeconds();
-        today = mm + '-' + dd + '-' + yyyy + " " + hours + ':' + minutes + ':' + seconds;
+        let today = getAddedOnDate();
         const Obj = {
             customer: { first_name, last_name, mobile_number, password, email_address },
             store: {
