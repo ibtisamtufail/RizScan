@@ -6,5 +6,5 @@ export const showAlert = (status, message) => {
     dispatch(show({ alert: true, status, message }));
     setTimeout(() => {
         dispatch(hide());
-    }, 5000);
+    }, 6000);
 }

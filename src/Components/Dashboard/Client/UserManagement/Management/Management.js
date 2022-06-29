@@ -7,7 +7,7 @@ import Users from './Users';
 import WithAuth from '../../../../HOC/Hoc';
 
 const Management = () => {
-    const [action, setAction] = useState({ open: false, type: null });
+    const [action, setAction] = useState({ open: false, type: null, data: null });
 
     return <div className='menu-parent'>
         <section className='drawer-parent-container'>
@@ -18,10 +18,10 @@ const Management = () => {
                 {/* <span className='menu-text'>User Management</span> */}
                 <section className='add-store-action-parent add-store-action'>
                     <img style={{ width: '40px', position: 'relative', right: '14px' }} src={AddIcon} alt='add' />
-                    <span onClick={() => setAction({ open: true, type: 'Add' })} className='add-store-text'>Add User</span>
+                    <span onClick={() => setAction({ open: true, type: 'Add', data: null })} className='add-store-text'>Add User</span>
                 </section>
             </section>
-            <section className='' style={{ marginTop: '1rem' }}>
+            <section style={{ marginTop: '1rem' }}>
                 <Users setAction={setAction} />
             </section>
         </section>
@@ -29,4 +29,4 @@ const Management = () => {
     </div>
 }
 
-export default WithAuth(Management,'RDTLN');
+export default WithAuth(Management, 'RDTLN');

@@ -16,10 +16,6 @@ import { getUsersListAPiURL, deleteUserAPiURL } from '../../../../Apis/Apis';
 import { showAlert } from '../../../../AlertMessage/AlertFunction';
 import CircularProgress from '@mui/material/CircularProgress';
 
-function createData(name, type) {
-    return { name, type };
-}
-
 export default function StickyHeadTable({ setAction }) {
     const Auth = useSelector(state => state.Auth);
     const UserList = useSelector(state => state.userList.users);
@@ -74,60 +70,75 @@ export default function StickyHeadTable({ setAction }) {
     };
 
     const deleteUser = async (target) => {
+        setLoading(true);
         const { user_name, user_type } = target;
-        try {
-            const { data } = await axios.delete(`${deleteUserAPiURL}?store_id=${Auth?.customer_id}&user_name=${user_name}&user_type=${user_type}`);
-            console.log(data);
-        } catch (error) {
-            console.log(error)
+        const obj = { store_id: Auth?.customer_id, user_name, user_type: user_type.toLowerCase() };
+        axios.delete(deleteUserAPiURL, {
+            headers: {
+                Authorization: `Bearer ${Auth?.token}`
+            },
+            data: obj
+        }).then(data => {
+            if (data) {
+                setLoading(false);
+                dispatch(setUserListData(data.data));
+                showAlert('success', 'User delete successfully');
+            }
+        }).catch(error => {
+            setLoading(false);
             if (error?.response?.data?.message) {
                 showAlert('error', error?.response?.data?.message);
             }
             else {
                 showAlert('error', 'Something went wrong');
             }
-        }
+        });
     }
+
 
     return <>
         {loading ? <div style={{ textAlign: 'center' }}><CircularProgress /></div> :
-            <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                <TableContainer sx={{ maxHeight: 440 }}>
-                    <Table stickyHeader aria-label="sticky table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>User Name</TableCell>
-                                <TableCell align='center'>User Type</TableCell>
-                                <TableCell align='center'>Update</TableCell>
-                                <TableCell align='center'>Delete</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {UserList
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map((row, index) => {
-                                    return (
-                                        <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                            <TableCell style={{ fontWeight: 'bold' }}>{row?.user_name}</TableCell>
-                                            <TableCell style={{ fontWeight: 'bold' }} align='center'>{row?.user_type}</TableCell>
-                                            <TableCell align='center'><img onClick={() => setAction({ open: true, type: 'Update' })} className='bottom-action-img-user' src={EditIcon} /></TableCell>
-                                            <TableCell align='center'><img onClick={() => deleteUser(row)} className='bottom-action-img-user' src={DelIcon} /></TableCell>
-                                        </TableRow>
-                                    );
-                                })}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[10, 25, 100]}
-                    component="div"
-                    count={UserList?.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-            </Paper>
+            UserList?.length > 0 ?
+                <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+                    <TableContainer sx={{ maxHeight: 440 }}>
+                        <Table stickyHeader aria-label="sticky table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>User Name</TableCell>
+                                    <TableCell align='center'>User Type</TableCell>
+                                    <TableCell align='center'>Update</TableCell>
+                                    <TableCell align='center'>Delete</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {UserList
+                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                    .map((row, index) => {
+                                        return (
+                                            <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                                                <TableCell style={{ fontWeight: 'bold' }}>{row?.user_name}</TableCell>
+                                                <TableCell style={{ fontWeight: 'bold' }} align='center'>{row?.user_type}</TableCell>
+                                                <TableCell align='center'><img onClick={() => setAction({ open: true, type: 'Update', data: row })} className='bottom-action-img-user' src={EditIcon} /></TableCell>
+                                                <TableCell align='center'><img onClick={() => deleteUser(row)} className='bottom-action-img-user' src={DelIcon} /></TableCell>
+                                            </TableRow>
+                                        );
+                                    })}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <TablePagination
+                        rowsPerPageOptions={[10, 25, 100]}
+                        component="div"
+                        count={UserList?.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                    />
+                </Paper>
+                : <div className='user-list-empty'>
+                    <span>No User Available Yet</span>
+                </div>
         }
     </>
 }

@@ -75,3 +75,10 @@
 .user-manage-parent {
     padding-top: 5px !important;
 }
+
+.user-list-empty {
+    text-align: center;
+    font-weight: 600;
+    font-size: larger;
+    color: #447BE7;
+}
