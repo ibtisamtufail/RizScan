@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -9,20 +9,23 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { RegisterAPiURL } from '../../Apis/Apis';
+import { RegisterAPiURL, addStoreAPiURL } from '../../Apis/Apis';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { showAlert } from '../../AlertMessage/AlertFunction';
 import { setAuthData } from '../../Redux/AuthSlice';
 import CircularProgress from '@mui/material/CircularProgress';
 import { getAddedOnDate } from '../../CommonFunc/CommonFunc';
 
 const steps = ['Basic Information', 'Store Information', 'Payment Information'];
+const stepsExtra = ['Store Information', 'Payment Information'];
 
-export default function HorizontalLinearStepper() {
+export default function HorizontalLinearStepper({ component }) {
     const dispatch = useDispatch();
+    const Auth = useSelector(state => state.Auth);
+
     const [loader, setLoader] = useState(false);
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = React.useState(component === 'Register' ? 0 : 1);
     const [skipped, setSkipped] = React.useState(new Set());
     const [billCheck, setBillCheck] = useState(false);
     // Basic information
@@ -53,7 +56,19 @@ export default function HorizontalLinearStepper() {
     const [card_CVV, setCard_CVV] = useState(0);
     const [added_on, setAdded_on] = useState('');
 
-    const registerCustomerFunc = async () => {
+    useEffect(() => {
+        axios.interceptors.request.use(
+            (config) => {
+                config.headers.Authorization = Auth?.token ? `Bearer ${Auth?.token}` : "";
+                return config;
+            },
+            (error) => {
+                console.log("---> token check", error.response);
+            }
+        );
+    }, [])
+
+    const getObject = () => {
         let today = getAddedOnDate();
         const Obj = {
             customer: { first_name, last_name, mobile_number, password, email_address },
@@ -64,13 +79,40 @@ export default function HorizontalLinearStepper() {
             payment_detail: { name_on_card, card_number, card_expiry, card_CVV },
             added_on: today
         }
+
+        const ObjAdd = {
+            customer_id: Auth?.customer_id,
+            store_name, store_address, store_city, store_zip, store_state, store_phone, subscription,
+            billing_address, billing_city, billing_city, billing_state, billing_zip, selling_style,
+            payment_detail: { name_on_card, card_number, card_expiry, card_CVV },
+            added_on: today
+        }
+
+        if (component === 'Register') return Obj;
+        if (component === 'AddStore') return ObjAdd;
+    }
+
+    const AfterDataFunc = (data) => {
+        setLoader(false);
+        dispatch(setAuthData(data));
+        showAlert('success', component === 'Register' ? 'Registration Successfully' : 'Add Store Successfully');
+    }
+
+    const registerCustomerFunc = async () => {
+        let Obj = getObject();
         try {
             setLoader(true);
-            const { data } = await axios.post(RegisterAPiURL, Obj);
-            if (data) {
-                setLoader(false);
-                dispatch(setAuthData(data));
-                showAlert('success', 'Registration Successful');
+            if (component === 'Register') {
+                const { data } = await axios.post(RegisterAPiURL, Obj);
+                if (data) {
+                    return AfterDataFunc(data);
+                }
+            }
+            else if (component === 'AddStore') {
+                const { data } = await axios.post(addStoreAPiURL, Obj);
+                if (data) {
+                    return AfterDataFunc(data);
+                }
             }
         } catch (error) {
             setLoader(false);
@@ -151,18 +193,34 @@ export default function HorizontalLinearStepper() {
     return (
         <Box sx={{ width: '100%' }}>
             <Stepper activeStep={activeStep}>
-                {steps.map((label, index) => {
-                    const stepProps = {};
-                    const labelProps = {};
-                    if (isStepSkipped(index)) {
-                        stepProps.completed = false;
-                    }
-                    return (
-                        <Step key={label} {...stepProps}>
-                            <StepLabel {...labelProps}>{label}</StepLabel>
-                        </Step>
-                    );
-                })}
+                {
+                    component === 'Register' ?
+                        steps.map((label, index) => {
+                            const stepProps = {};
+                            const labelProps = {};
+                            if (isStepSkipped(index)) {
+                                stepProps.completed = false;
+                            }
+                            return (
+                                <Step key={label} {...stepProps}>
+                                    <StepLabel {...labelProps}>{label}</StepLabel>
+                                </Step>
+                            );
+                        })
+                        :
+                        stepsExtra.map((label, index) => {
+                            const stepProps = {};
+                            const labelProps = {};
+                            if (isStepSkipped(index)) {
+                                stepProps.completed = false;
+                            }
+                            return (
+                                <Step key={label} {...stepProps}>
+                                    <StepLabel {...labelProps}>{label}</StepLabel>
+                                </Step>
+                            );
+                        })
+                }
             </Stepper>
             {activeStep === steps.length ? (
                 <React.Fragment>
@@ -306,13 +364,18 @@ export default function HorizontalLinearStepper() {
                                 ?
                                 <CircularProgress />
                                 :
-                                <Button variant="contained" onClick={handleNext}>
-                                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                                </Button>
+                                component !== 'Register' ?
+                                    <Button Button variant="contained" onClick={handleNext}>
+                                        {activeStep === stepsExtra.length ? 'Finish' : 'Next1'}
+                                    </Button> :
+                                    <Button Button variant="contained" onClick={handleNext}>
+                                        {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                                    </Button>
                         }
                     </Box>
                 </React.Fragment>
-            )}
-        </Box>
+            )
+            }
+        </Box >
     );
 }

@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { showAlert } from '../../../../AlertMessage/AlertFunction';
 import CircularProgress from '@mui/material/CircularProgress';
 import { getAddedOnDate } from '../../../../CommonFunc/CommonFunc';
+import WithAuth from '../../../../HOC/Hoc';
 
 const UpdateProfile = () => {
     const Auth = useSelector(state => state.Auth);
@@ -32,7 +33,7 @@ const UpdateProfile = () => {
                 console.log("---> token check", error.response);
             }
         );
-    }, [])
+    }, []);
 
     useEffect(() => {
         getCustomerProfile();
@@ -119,4 +120,4 @@ const UpdateProfile = () => {
     </>
 }
 
-export default UpdateProfile;
+export default WithAuth(UpdateProfile, 'RDTLN');

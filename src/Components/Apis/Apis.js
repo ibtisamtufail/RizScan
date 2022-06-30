@@ -9,3 +9,6 @@ export const AddUserAPiURL = `${ServerURL}/user/adduser`;
 export const getUsersListAPiURL = `${ServerURL}/user/listuser`;
 export const deleteUserAPiURL = `${ServerURL}/user/deleteuser`;
 export const updateUserAPiURL = `${ServerURL}/user/updateuser`;
+
+export const getAllStoreAPiURL = `${ServerURL}/store/getallstores`;
+export const addStoreAPiURL = `${ServerURL}/store/addstore`;

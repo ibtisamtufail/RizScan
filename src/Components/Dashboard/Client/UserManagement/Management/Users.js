@@ -23,7 +23,7 @@ export default function StickyHeadTable({ setAction }) {
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         axios.interceptors.request.use(

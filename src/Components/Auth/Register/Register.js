@@ -12,11 +12,11 @@ const Register = ({ component = 'Register' }) => {
             {component === 'UpdateStore' && <h1 className='Login-heading'>Update Store or Payment Information</h1>}
             <section className='grid-parent'>
                 <section className='reg-form-parent'>
-                    <Form />
+                    <Form component={component} />
                 </section>
             </section>
         </div>
     )
 }
 
-export default WithAuth(Register,'RDTUM');
+export default Register;
