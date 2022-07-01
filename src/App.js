@@ -22,6 +22,7 @@ import SalesPayoutReport from "./Components/Dashboard/Client/Reports/SalesPayout
 import Alert from "./Components/AlertMessage/Alert";
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
+import AdminLogin from "./Components/Dashboard/Admin/AdminAuth";
 const persistor = persistStore(Store);
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
             <Route path='/backofficereports' element={<BackOfficeReport />} />
             <Route path='/returnsreport' element={<ReturnsReport />} />
             <Route path='/salesreport' element={<SalesPayoutReport />} />
+            <Route path='/AdminLogin' element={<AdminLogin />} />
           </Routes>
         </BrowserRouter>
       </PersistGate>
