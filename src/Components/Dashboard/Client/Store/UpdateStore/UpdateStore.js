@@ -37,7 +37,7 @@ const UpdateStore = () => {
             }
         } catch (error) {
             setLoading(false);
-            showAlert('success', 'Error while fetching store data');
+            showAlert('error', 'Error while fetching store data');
         }
     }
 

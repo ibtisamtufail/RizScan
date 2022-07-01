@@ -28,7 +28,7 @@ export default function HorizontalLinearStepper({ component, storeData }) {
     console.log(storeData)
 
     const [loader, setLoader] = useState(false);
-    const [activeStep, setActiveStep] = React.useState(component === 'Register' ? 0 : 2);
+    const [activeStep, setActiveStep] = React.useState(component === 'Register' ? 0 : 1);
     const [skipped, setSkipped] = React.useState(new Set());
     const [billCheck, setBillCheck] = useState(false);
     // Basic information
@@ -72,6 +72,9 @@ export default function HorizontalLinearStepper({ component, storeData }) {
 
     const getObject = () => {
         let today = getAddedOnDate();
+        const queryString = window.location.search;
+        const parameters = new URLSearchParams(queryString);
+        const value = parameters.get('store_id');
         const Obj = {
             customer: { first_name, last_name, mobile_number, password, email_address },
             store: {
@@ -85,15 +88,14 @@ export default function HorizontalLinearStepper({ component, storeData }) {
         const ObjAdd = {
             customer_id: Auth?.customer_id,
             store_name, store_address, store_city, store_zip, store_state, store_phone, subscription_id: subscription,
-            billing_address, billing_city, billing_city, billing_state, billing_zip, selling_style,
+            billing_address, billing_city, billing_state, billing_zip, selling_style,
             payment_detail: { name_on_card, card_number, card_expiry: card_expiry, card_CVV: parseInt(card_CVV) },
             added_on: today
         }
 
         const ObjUpdate = {
-            customer_id: Auth?.customer_id,
+            store_id: value,
             store_name, store_address, store_city, store_zip, store_state, store_phone, subscription_id: subscription,
-            billing_address, billing_city, billing_city, billing_state, billing_zip, selling_style,
             payment_detail: { name_on_card, card_number, card_expiry: card_expiry, card_CVV: parseInt(card_CVV) },
             updated_on: today
         }
@@ -129,10 +131,10 @@ export default function HorizontalLinearStepper({ component, storeData }) {
                 }
             }
             else if (component === 'UpdateStore') {
-                const { data } = await axios.post(updateStoreAPiURL, Obj);
+                const { data } = await axios.put(updateStoreAPiURL, Obj);
                 if (data) {
                     AfterDataFunc(data);
-                    return navigate('storelist')
+                    return navigate('/storelist')
                 }
             }
         } catch (error) {
@@ -171,7 +173,7 @@ export default function HorizontalLinearStepper({ component, storeData }) {
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
             }
         }
-        else if (activeStep === 1) {
+        else if (activeStep === 1 && component !== 'UpdateStore') {
             if (store_name === '' || store_address === '' || store_city === '' || store_state === '' || store_zip === '' || store_phone === '' || subscription === 0
                 || billing_address === '' || billing_city === '' || billing_state === '' || billing_zip === '' || selling_style === '') {
                 showAlert('error', 'Fields must not be empty');
@@ -180,13 +182,30 @@ export default function HorizontalLinearStepper({ component, storeData }) {
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
             }
         }
-        else if (activeStep === 2) {
+        else if (activeStep === 1 && component === 'UpdateStore') {
+            if (store_name === '' || store_address === '' || store_city === '' || store_state === '' || store_zip === '' || store_phone === '' || subscription === 0) {
+                showAlert('error', 'Fields must not be empty');
+            }
+            else {
+                setActiveStep((prevActiveStep) => prevActiveStep + 1);
+            }
+        }
+        else if (activeStep === 2 && component !== 'UpdateStore') {
             if (name_on_card === '' || card_number === '' || card_expiry === '' || card_CVV === '') {
                 showAlert('error', 'Fields must not be empty');
             }
             else {
                 registerCustomerFunc();
             }
+        }
+        else if (activeStep === 2 && component === 'UpdateStore') {
+            registerCustomerFunc();
+            // if (name_on_card === '' || card_number === '' || card_expiry === '' || card_CVV === '') {
+            //     showAlert('error', 'Fields must not be empty');
+            // }
+            // else {
+            //     registerCustomerFunc();
+            // }
         }
     };
 
@@ -319,7 +338,7 @@ export default function HorizontalLinearStepper({ component, storeData }) {
                             </div>
                             <br />
                             {
-                                billCheck &&
+                                (billCheck) &&
                                 <React.Fragment>
                                     <Grid container spacing={2}>
                                         <Grid item xs={12} sm={6} md={6}>
