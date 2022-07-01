@@ -94,29 +94,31 @@ const UpdateProfile = () => {
     }
 
     return <>
-        {loading ? <div style={{ textAlign: 'center', marginTop: '2rem' }}><CircularProgress /></div> :
-            <div className='menu-parent'>
-                <section className='drawer-parent-container'>
-                    <Drawer />
-                </section>
-                <section className='dash-content-parent'>
-                    <section className='page-heading'>
-                        <span className='menu-text'>Update Profile</span>
-                    </section>
-                    <section className='update-user-manage-profile'>
-                        <TextField defaultValue={profile ? profile?.first_name : firstName} onChange={(e) => setFirstName(e.target.value)} className='text-field' size='small' label="First Name" variant="outlined" />
-                        <TextField defaultValue={profile ? profile?.last_name : lastName} onChange={(e) => setLastName(e.target.value)} className='text-field' size='small' label="Last Name" variant="outlined" />
-                        <TextField inputProps={
-                            { readOnly: true, }
-                        } defaultValue={profile ? profile?.email_address : email} onChange={(e) => setEmail(e.target.value)} className='text-field' size='small' label="Email" variant="outlined" />
-                        <TextField defaultValue={profile ? profile?.mobile_number : mobile} onChange={(e) => setMobile(e.target.value)} className='text-field' size='small' label="Mobile" variant="outlined" />
-                        <TextField type='password' onChange={(e) => setPassword(e.target.value)} className='text-field' size='small' label="Password" variant="outlined" />
-                        <TextField type='password' onChange={(e) => setConfirmPassword(e.target.value)} className='text-field' size='small' label="Confirm Password" variant="outlined" />
-                        <Button onClick={updateCustomer} className='update-btn-user' variant="contained">Update</Button>
-                    </section>
-                </section>
-            </div>
-        }
+        <div className='menu-parent'>
+            <section className='drawer-parent-container'>
+                <Drawer />
+            </section>
+            <section className='dash-content-parent'>
+                {loading ? <div style={{ textAlign: 'center', marginTop: '2rem' }}><CircularProgress /></div> :
+                    <>
+                        <section className='page-heading'>
+                            <span className='menu-text'>Update Profile</span>
+                        </section>
+                        <section className='update-user-manage-profile'>
+                            <TextField defaultValue={profile ? profile?.first_name : firstName} onChange={(e) => setFirstName(e.target.value)} className='text-field' size='small' label="First Name" variant="outlined" />
+                            <TextField defaultValue={profile ? profile?.last_name : lastName} onChange={(e) => setLastName(e.target.value)} className='text-field' size='small' label="Last Name" variant="outlined" />
+                            <TextField inputProps={
+                                { readOnly: true, }
+                            } defaultValue={profile ? profile?.email_address : email} onChange={(e) => setEmail(e.target.value)} className='text-field' size='small' label="Email" variant="outlined" />
+                            <TextField defaultValue={profile ? profile?.mobile_number : mobile} onChange={(e) => setMobile(e.target.value)} className='text-field' size='small' label="Mobile" variant="outlined" />
+                            <TextField type='password' onChange={(e) => setPassword(e.target.value)} className='text-field' size='small' label="Password" variant="outlined" />
+                            <TextField type='password' onChange={(e) => setConfirmPassword(e.target.value)} className='text-field' size='small' label="Confirm Password" variant="outlined" />
+                            <Button onClick={updateCustomer} className='update-btn-user' variant="contained">Update</Button>
+                        </section>
+                    </>
+                }
+            </section>
+        </div>
     </>
 }
 

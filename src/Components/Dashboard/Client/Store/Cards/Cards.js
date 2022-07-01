@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 
 export default function BasicCard({ item }) {
     const navigation = useNavigate();
-    console.log(item);
 
     return <div>
         <Card className='card-parent' sx={{ minWidth: 275 }}>
@@ -23,7 +22,7 @@ export default function BasicCard({ item }) {
             </CardContent>
         </Card>
         <section className='cards-bottom-text-parent'>
-            <span onClick={() => navigation('/updatestore')} className='cards-bottom-text'>Update store or payent info</span>
+            <span onClick={() => navigation(`/updatestore?store_id=${item?.store_id}`)} className='cards-bottom-text'>Update store or payent info</span>
             <img style={{ width: '18px' }} src={GroupIcon} alt='group' />
         </section>
     </div>

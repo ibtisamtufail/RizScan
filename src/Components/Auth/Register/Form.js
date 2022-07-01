@@ -9,23 +9,26 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { RegisterAPiURL, addStoreAPiURL } from '../../Apis/Apis';
+import { RegisterAPiURL, addStoreAPiURL, updateStoreAPiURL } from '../../Apis/Apis';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { showAlert } from '../../AlertMessage/AlertFunction';
 import { setAuthData } from '../../Redux/AuthSlice';
 import CircularProgress from '@mui/material/CircularProgress';
 import { getAddedOnDate } from '../../CommonFunc/CommonFunc';
+import { useNavigate } from 'react-router-dom';
 
 const steps = ['Basic Information', 'Store Information', 'Payment Information'];
 const stepsExtra = ['Store Information', 'Payment Information'];
 
-export default function HorizontalLinearStepper({ component }) {
+export default function HorizontalLinearStepper({ component, storeData }) {
     const dispatch = useDispatch();
     const Auth = useSelector(state => state.Auth);
+    const navigate = useNavigate();
+    console.log(storeData)
 
     const [loader, setLoader] = useState(false);
-    const [activeStep, setActiveStep] = React.useState(component === 'Register' ? 0 : 1);
+    const [activeStep, setActiveStep] = React.useState(component === 'Register' ? 0 : 2);
     const [skipped, setSkipped] = React.useState(new Set());
     const [billCheck, setBillCheck] = useState(false);
     // Basic information
@@ -36,12 +39,12 @@ export default function HorizontalLinearStepper({ component }) {
     const [email_address, setEmail_address] = useState('');
     const [confirm_password, setConfirm_password] = useState('');
     // store information
-    const [store_name, setStore_name] = useState('');
-    const [store_address, setStore_address] = useState('');
-    const [store_city, setStore_city] = useState('');
-    const [store_state, setStore_state] = useState('');
-    const [store_zip, setStore_zip] = useState('');
-    const [store_phone, setStore_phone] = useState('');
+    const [store_name, setStore_name] = useState(storeData !== null ? storeData?.store?.store_name : '');
+    const [store_address, setStore_address] = useState(storeData !== null ? storeData?.store?.store_address : '');
+    const [store_city, setStore_city] = useState(storeData !== null ? storeData?.store?.store_city : '');
+    const [store_state, setStore_state] = useState(storeData !== null ? storeData?.store?.store_state : '');
+    const [store_zip, setStore_zip] = useState(storeData !== null ? storeData?.store?.store_zip : '');
+    const [store_phone, setStore_phone] = useState(storeData !== null ? storeData?.store?.store_phone : '');
     const [subscription, setSubscription] = useState(2);
     // Billing
     const [billing_address, setBilling_address] = useState('');
@@ -50,11 +53,10 @@ export default function HorizontalLinearStepper({ component }) {
     const [billing_zip, setBilling_zip] = useState('');
     const [selling_style, setSelling_style] = useState('asc');
     // payment information
-    const [name_on_card, setName_on_card] = useState('');
-    const [card_number, setCard_number] = useState('');
-    const [card_expiry, setCard_expiry] = useState('');
-    const [card_CVV, setCard_CVV] = useState(0);
-    const [added_on, setAdded_on] = useState('');
+    const [name_on_card, setName_on_card] = useState(storeData !== null ? storeData?.payment_detail?.name_on_card : '');
+    const [card_number, setCard_number] = useState(storeData !== null ? storeData?.payment_detail?.card_number : '');
+    const [card_expiry, setCard_expiry] = useState(storeData !== null ? storeData?.payment_detail?.card_expiry : '');
+    const [card_CVV, setCard_CVV] = useState(storeData !== null ? storeData?.payment_detail?.card_CVV : 0);
 
     useEffect(() => {
         axios.interceptors.request.use(
@@ -82,20 +84,31 @@ export default function HorizontalLinearStepper({ component }) {
 
         const ObjAdd = {
             customer_id: Auth?.customer_id,
-            store_name, store_address, store_city, store_zip, store_state, store_phone, subscription,
+            store_name, store_address, store_city, store_zip, store_state, store_phone, subscription_id: subscription,
             billing_address, billing_city, billing_city, billing_state, billing_zip, selling_style,
-            payment_detail: { name_on_card, card_number, card_expiry, card_CVV },
+            payment_detail: { name_on_card, card_number, card_expiry: card_expiry, card_CVV: parseInt(card_CVV) },
             added_on: today
+        }
+
+        const ObjUpdate = {
+            customer_id: Auth?.customer_id,
+            store_name, store_address, store_city, store_zip, store_state, store_phone, subscription_id: subscription,
+            billing_address, billing_city, billing_city, billing_state, billing_zip, selling_style,
+            payment_detail: { name_on_card, card_number, card_expiry: card_expiry, card_CVV: parseInt(card_CVV) },
+            updated_on: today
         }
 
         if (component === 'Register') return Obj;
         if (component === 'AddStore') return ObjAdd;
+        if (component === 'UpdateStore') return ObjUpdate;
     }
 
     const AfterDataFunc = (data) => {
         setLoader(false);
         dispatch(setAuthData(data));
-        showAlert('success', component === 'Register' ? 'Registration Successfully' : 'Add Store Successfully');
+        if (component === 'UpdateStore') showAlert('success', 'Update Store Successfully');
+        else if (component === 'Register') showAlert('success', 'Register Successfully');
+        else if (component === 'AddStore') showAlert('success', 'Add Store Successfully');
     }
 
     const registerCustomerFunc = async () => {
@@ -111,7 +124,15 @@ export default function HorizontalLinearStepper({ component }) {
             else if (component === 'AddStore') {
                 const { data } = await axios.post(addStoreAPiURL, Obj);
                 if (data) {
-                    return AfterDataFunc(data);
+                    AfterDataFunc(data);
+                    return navigate('storelist')
+                }
+            }
+            else if (component === 'UpdateStore') {
+                const { data } = await axios.post(updateStoreAPiURL, Obj);
+                if (data) {
+                    AfterDataFunc(data);
+                    return navigate('storelist')
                 }
             }
         } catch (error) {
@@ -366,7 +387,7 @@ export default function HorizontalLinearStepper({ component }) {
                                 :
                                 component !== 'Register' ?
                                     <Button Button variant="contained" onClick={handleNext}>
-                                        {activeStep === stepsExtra.length ? 'Finish' : 'Next1'}
+                                        {activeStep === stepsExtra.length ? 'Finish' : 'Next'}
                                     </Button> :
                                     <Button Button variant="contained" onClick={handleNext}>
                                         {activeStep === steps.length - 1 ? 'Finish' : 'Next'}

@@ -3,7 +3,7 @@ import Form from './Form';
 import WithAuth from '../../HOC/Hoc';
 import './Register.css';
 
-const Register = ({ component = 'Register' }) => {
+const Register = ({ component = 'Register', store }) => {
 
     return (
         <div style={{ paddingBottom: '3rem' }}>
@@ -12,7 +12,7 @@ const Register = ({ component = 'Register' }) => {
             {component === 'UpdateStore' && <h1 className='Login-heading'>Update Store or Payment Information</h1>}
             <section className='grid-parent'>
                 <section className='reg-form-parent'>
-                    <Form component={component} />
+                    <Form storeData={store} component={component} />
                 </section>
             </section>
         </div>

@@ -12,3 +12,5 @@ export const updateUserAPiURL = `${ServerURL}/user/updateuser`;
 
 export const getAllStoreAPiURL = `${ServerURL}/store/getallstores`;
 export const addStoreAPiURL = `${ServerURL}/store/addstore`;
+export const updateStoreAPiURL = `${ServerURL}/store/updatestore`;
+export const getStoreInfoAPiURL = `${ServerURL}/store/getstore`;

@@ -50,7 +50,7 @@ const Drawer = () => {
                     }
                     <li className='drawer-list'>
                         <img className='icon-imgs' src={ProfileIcon} alt="profile" />
-                        <span>Profile</span>
+                        <span onClick={() => navigation('/updateprofile')}>Profile</span>
                     </li>
                     <li className='drawer-list'>
                         <img className='icon-imgs' src={SubsIcon} alt="subs" />
