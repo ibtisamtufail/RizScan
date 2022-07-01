@@ -32,11 +32,16 @@ const Login = () => {
       if (data?.response) showAlert('error', data?.response);
       else {
         showAlert('success', 'Login Successful');
-        dispatch(setAuthData(data))
+        dispatch(setAuthData(data));
       }
     } catch (error) {
       setLoader(false);
-      showAlert('error', 'Something went wrong');
+      if (error?.response?.data?.message) {
+        showAlert('error', error?.response?.data?.message);
+      }
+      else {
+        showAlert('error', 'Something went wrong');
+      }
     }
   }
 
@@ -60,16 +65,16 @@ const Login = () => {
           {
             option === 2 &&
             <React.Fragment>
-              <TextField style={{ width: '350px' }} size='small' id="outlined-basic" label="Store ID" variant="outlined" /><br /><br />
-              <TextField style={{ width: '350px' }} size='small' id="outlined-basic" label="Username" variant="outlined" /><br /><br />
-              <TextField style={{ width: '350px' }} size='small' id="outlined-basic" label="Password" variant="outlined" />
+              <TextField style={{ width: '350px' }} size='small' label="Store ID" variant="outlined" /><br /><br />
+              <TextField style={{ width: '350px' }} size='small' label="Username" variant="outlined" /><br /><br />
+              <TextField style={{ width: '350px' }} size='small' label="Password" type='password' variant="outlined" />
             </React.Fragment>
           }
           {
             option === 1 &&
             <React.Fragment>
-              <TextField onChange={(e) => setEmail(e.target.value)} style={{ width: '350px' }} size='small' id="outlined-basic" label="Email" variant="outlined" /><br /><br />
-              <TextField onChange={(e) => setPassword(e.target.value)} style={{ width: '350px' }} size='small' id="outlined-basic" label="Password" variant="outlined" />
+              <TextField onChange={(e) => setEmail(e.target.value)} style={{ width: '350px' }} size='small' label="Email" variant="outlined" /><br /><br />
+              <TextField onChange={(e) => setPassword(e.target.value)} style={{ width: '350px' }} size='small' label="Password" type='password' variant="outlined" />
             </React.Fragment>
           }
         </section>

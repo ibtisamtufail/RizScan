@@ -21,7 +21,7 @@ const Drawer = () => {
                     <span className='user-name'>Adam Jones</span>
                 </div>
                 <ul className='drawer-ul'>
-                    <li className='drawer-list'>
+                    <li className='drawer-list' onClick={() => navigation('/usermanagement')}>
                         <img className='icon-imgs' src={HomeIcon} alt="home" />
                         <span>Home</span>
                     </li>
@@ -50,7 +50,7 @@ const Drawer = () => {
                     }
                     <li className='drawer-list'>
                         <img className='icon-imgs' src={ProfileIcon} alt="profile" />
-                        <span>Profile</span>
+                        <span onClick={() => navigation('/updateprofile')}>Profile</span>
                     </li>
                     <li className='drawer-list'>
                         <img className='icon-imgs' src={SubsIcon} alt="subs" />
