@@ -5,11 +5,15 @@ import { persistReducer } from 'redux-persist';
 import AlertSlice from './AlertSlice';
 import AuthSlice from './AuthSlice';
 import UsersSlice from './UsersSlice';
+import LoaderSlice from "./LoaderSlice"
+import counterSlice from './counterSlice';
 
 const reducers = combineReducers({
     Alert: AlertSlice,
     Auth: AuthSlice,
-    userList: UsersSlice
+    userList: UsersSlice,
+    counter:counterSlice,
+    Loader:LoaderSlice
 });
 
 const persistConfig = {
